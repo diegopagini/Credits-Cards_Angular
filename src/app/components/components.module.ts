@@ -5,5 +5,6 @@ import { CreditCardListModule } from './credit-card-list/credit-card-list.module
 
 @NgModule({
   imports: [CommonModule, CreditCardModule, CreditCardListModule],
+  exports: [CreditCardModule, CreditCardListModule],
 })
 export class ComponentsModule {}
