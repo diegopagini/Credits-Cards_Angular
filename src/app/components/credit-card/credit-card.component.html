@@ -1,3 +1,58 @@
 <section class="credit-card">
-  <fa-icon [icon]="creditCards.visa"></fa-icon>
+  <div class="credit-card__visual"></div>
+  <form
+    class="credit-card__form"
+    [formGroup]="creditCardForm"
+    autocomplete="off"
+  >
+    <div class="credit-card__form-group">
+      <label for="cardNumber" class="credit-card__form-label">
+        <input
+          type="number"
+          formControlName="cardNumber"
+          id="cardNumber"
+          class="credit-card__form-input"
+        />
+      </label>
+    </div>
+
+    <div class="credit-card__form-group">
+      <label for="cardHolder" class="credit-card__form-label">
+        <input
+          type="text"
+          formControlName="cardHolder"
+          id="cardHolder"
+          class="credit-card__form-input"
+        />
+      </label>
+    </div>
+
+    <div class="credit-card__form-group">
+      <label for="cardExpirationYear" class="credit-card__form-label">
+        <select name="cardExpirationYear" id="cardExpirationYear">
+          <option value=""></option>
+        </select>
+      </label>
+    </div>
+
+    <div class="credit-card__form-group">
+      <label for="cardExpirationMonth" class="credit-card__form-label">
+        <select name="cardExpirationMonth" id="cardExpirationMonth">
+          <option value=""></option>
+        </select>
+      </label>
+    </div>
+  </form>
+
+  <div class="credit-card__form-group">
+    <label for="cardCCV" class="credit-card__form-label">
+      <input
+        type="number"
+        formControlName="cardCCV"
+        id="cardCCV"
+        class="credit-card__form-input"
+      />
+    </label>
+  </div>
 </section>
+<!-- <fa-icon [icon]="creditCards.visa"></fa-icon> -->

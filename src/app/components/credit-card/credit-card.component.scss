@@ -1,2 +1,20 @@
 .credit-card {
+  &__visual {
+    background-color: transparent;
+    border: 1px solid red;
+    border-radius: 22px;
+    height: 250px;
+    width: 400px;
+  }
+
+  &__form {
+    &-group {
+    }
+
+    &-label {
+    }
+
+    &-input {
+    }
+  }
 }
