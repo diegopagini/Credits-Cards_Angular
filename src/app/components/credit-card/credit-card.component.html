@@ -1,5 +1,12 @@
 <section class="credit-card">
-  <div class="credit-card__visual"></div>
+  <div class="credit-card__visual">
+    <div
+      *ngIf="creditCardForm.get('cardNumber').value"
+      class="credit-card__visual-type"
+    >
+      <fa-icon [icon]="creditCardType"></fa-icon>
+    </div>
+  </div>
   <form
     class="credit-card__form"
     [formGroup]="creditCardForm"
@@ -29,7 +36,11 @@
 
     <div class="credit-card__form-group">
       <label for="cardExpirationYear" class="credit-card__form-label">
-        <select name="cardExpirationYear" id="cardExpirationYear">
+        <select
+          name="cardExpirationYear"
+          id="cardExpirationYear"
+          formControlName="cardExpirationYear"
+        >
           <option value=""></option>
         </select>
       </label>
@@ -37,22 +48,25 @@
 
     <div class="credit-card__form-group">
       <label for="cardExpirationMonth" class="credit-card__form-label">
-        <select name="cardExpirationMonth" id="cardExpirationMonth">
+        <select
+          name="cardExpirationMonth"
+          id="cardExpirationMonth"
+          formControlName="cardExpirationMonth"
+        >
           <option value=""></option>
         </select>
       </label>
     </div>
-  </form>
 
-  <div class="credit-card__form-group">
-    <label for="cardCCV" class="credit-card__form-label">
-      <input
-        type="number"
-        formControlName="cardCCV"
-        id="cardCCV"
-        class="credit-card__form-input"
-      />
-    </label>
-  </div>
+    <div class="credit-card__form-group">
+      <label for="cardCCV" class="credit-card__form-label">
+        <input
+          type="number"
+          formControlName="cardCCV"
+          id="cardCCV"
+          class="credit-card__form-input"
+        />
+      </label>
+    </div>
+  </form>
 </section>
-<!-- <fa-icon [icon]="creditCards.visa"></fa-icon> -->

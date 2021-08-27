@@ -4,7 +4,15 @@
     border: 1px solid red;
     border-radius: 22px;
     height: 250px;
+    position: relative;
     width: 400px;
+
+    &-type {
+      font-size: 2.5rem;
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+    }
   }
 
   &__form {
