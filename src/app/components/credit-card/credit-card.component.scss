@@ -16,6 +16,13 @@
   }
 
   &__form {
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3rem;
+    padding: 1rem;
     &-group {
     }
 
