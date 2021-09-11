@@ -1,18 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+
 .credit-card {
   &__visual {
-    background-color: transparent;
-    border: 1px solid red;
+    background-color: #fff;
     border-radius: 22px;
+    box-shadow: 3px 4px 9px 5px rgba(0, 0, 0, 0.62);
     height: 250px;
     position: relative;
     width: 400px;
 
     &-type {
+      color: #fff;
       font-size: 2.5rem;
       position: absolute;
       right: 2rem;
       top: 2rem;
     }
+  }
+  &__visa {
+    background: url("https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+      no-repeat center center;
+    background-size: cover;
+    transition: all 1s ease-in-out;
+  }
+
+  &__master {
+    background: url("https://images.pexels.com/photos/257092/pexels-photo-257092.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+      no-repeat center center;
+    background-size: cover;
+    transition: all 1s ease-in-out;
+  }
+
+  &__amex {
+    background: url("https://images.pexels.com/photos/4045714/pexels-photo-4045714.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+      no-repeat center center;
+    background-size: cover;
+    transition: all 1s ease-in-out;
+  }
+
+  &__discover {
+    background: url("https://images.pexels.com/photos/773583/pexels-photo-773583.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+      no-repeat center center;
+    background-size: cover;
+    transition: all 1s ease-in-out;
   }
 
   &__form {
@@ -20,16 +50,23 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    font-family: "Inconsolata", monospace;
     justify-content: center;
     margin-top: 3rem;
     padding: 1rem;
     &-group {
+      padding: 0.5rem 1rem;
+      width: 100%;
     }
 
     &-label {
+      font-size: 1rem;
     }
 
     &-input {
+      font-size: 1.2rem;
+      height: 1.4rem;
+      width: 100%;
     }
   }
 }

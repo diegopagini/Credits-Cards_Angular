@@ -1,10 +1,24 @@
 <section class="credit-card">
-  <div class="credit-card__visual">
+  <div
+    class="credit-card__visual"
+    [ngClass]="{
+      'credit-card__visa animated fadeIn':
+        creditCardForm.get('cardNumber').value &&
+        creditCardForm.get('cardNumber').value.toString().startsWith('4'),
+      'credit-card__master animated fadeIn':
+        creditCardForm.get('cardNumber').value &&
+        creditCardForm.get('cardNumber').value.toString().startsWith('5'),
+      'credit-card__amex animated fadeIn':
+        creditCardForm.get('cardNumber').value &&
+        creditCardForm.get('cardNumber').value.toString().startsWith('3'),
+      'credit-card__discover animated fadeIn': setCreditCardBackground()
+    }"
+  >
     <div
       *ngIf="creditCardForm.get('cardNumber').value"
       class="credit-card__visual-type"
     >
-      <fa-icon [icon]="creditCardType"></fa-icon>
+      <fa-icon class="animated fadeIn" [icon]="creditCardType"></fa-icon>
     </div>
   </div>
   <form
@@ -13,33 +27,39 @@
     autocomplete="off"
   >
     <div class="credit-card__form-group">
-      <label for="cardNumber" class="credit-card__form-label">
+      <label for="cardNumber" class="credit-card__form-label"
+        >Card Number
         <input
           type="number"
           formControlName="cardNumber"
           id="cardNumber"
           class="credit-card__form-input"
+          max="16"
         />
       </label>
     </div>
 
     <div class="credit-card__form-group">
-      <label for="cardHolder" class="credit-card__form-label">
+      <label for="cardHolder" class="credit-card__form-label"
+        >Card Holder
         <input
           type="text"
           formControlName="cardHolder"
           id="cardHolder"
           class="credit-card__form-input"
+          max="30"
         />
       </label>
     </div>
 
     <div class="credit-card__form-group">
-      <label for="cardExpirationYear" class="credit-card__form-label">
+      <label for="cardExpirationYear" class="credit-card__form-label"
+        >Expiration Year
         <select
           name="cardExpirationYear"
           id="cardExpirationYear"
           formControlName="cardExpirationYear"
+          class="credit-card__form-input"
         >
           <option value=""></option>
         </select>
@@ -47,24 +67,30 @@
     </div>
 
     <div class="credit-card__form-group">
-      <label for="cardExpirationMonth" class="credit-card__form-label">
+      <label for="cardExpirationMonth" class="credit-card__form-label"
+        >Expiration Month
         <select
           name="cardExpirationMonth"
           id="cardExpirationMonth"
           formControlName="cardExpirationMonth"
+          class="credit-card__form-input"
         >
-          <option value=""></option>
+          <option *ngFor="let month of expirationMonths" [value]="month.value">
+            {{ month.name }}
+          </option>
         </select>
       </label>
     </div>
 
     <div class="credit-card__form-group">
-      <label for="cardCCV" class="credit-card__form-label">
+      <label for="cardCCV" class="credit-card__form-label"
+        >CCV
         <input
           type="number"
           formControlName="cardCCV"
           id="cardCCV"
           class="credit-card__form-input"
+          max="3"
         />
       </label>
     </div>
