@@ -67,6 +67,12 @@
       font-size: 1.2rem;
       height: 1.4rem;
       width: 100%;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
   }
 }

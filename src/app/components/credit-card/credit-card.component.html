@@ -35,8 +35,10 @@
           id="cardNumber"
           class="credit-card__form-input"
           max="16"
+          autofocus
         />
       </label>
+      <app-form-error *ngIf="cardNumberNoValid"></app-form-error>
     </div>
 
     <div class="credit-card__form-group">
@@ -48,8 +50,12 @@
           id="cardHolder"
           class="credit-card__form-input"
           max="30"
+          [disabled]="
+            isDisabled(creditCardForm.get('cardNumber').value, 'cardHolder')
+          "
         />
       </label>
+      <app-form-error *ngIf="cardHolderNoValid"></app-form-error>
     </div>
 
     <div class="credit-card__form-group">
@@ -60,10 +66,19 @@
           id="cardExpirationYear"
           formControlName="cardExpirationYear"
           class="credit-card__form-input"
+          [disabled]="
+            isDisabled(
+              creditCardForm.get('cardHolder').value,
+              'cardExpirationYear'
+            )
+          "
         >
-          <option value=""></option>
+          <option *ngFor="let year of expirationYears" [value]="year">
+            {{ year }}
+          </option>
         </select>
       </label>
+      <app-form-error *ngIf="cardExpirationYearNoValid"></app-form-error>
     </div>
 
     <div class="credit-card__form-group">
@@ -74,12 +89,19 @@
           id="cardExpirationMonth"
           formControlName="cardExpirationMonth"
           class="credit-card__form-input"
+          [disabled]="
+            isDisabled(
+              creditCardForm.get('cardExpirationYear').value,
+              'cardExpirationMonth'
+            )
+          "
         >
           <option *ngFor="let month of expirationMonths" [value]="month.value">
             {{ month.name }}
           </option>
         </select>
       </label>
+      <app-form-error *ngIf="cardExpirationMonthNoValid"></app-form-error>
     </div>
 
     <div class="credit-card__form-group">
@@ -91,8 +113,15 @@
           id="cardCCV"
           class="credit-card__form-input"
           max="3"
+          [disabled]="
+            isDisabled(
+              creditCardForm.get('cardExpirationMonth').value,
+              'cardCCV'
+            )
+          "
         />
       </label>
+      <app-form-error *ngIf="cardCCVNoValid"></app-form-error>
     </div>
   </form>
 </section>

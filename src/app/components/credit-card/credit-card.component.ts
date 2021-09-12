@@ -38,15 +38,16 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     { name: 'November', value: 11 },
     { name: 'December', value: 12 },
   ];
-  private unsubscribe$: Subject<void> = new Subject<void>();
   public isFront: boolean = true;
+  public expirationYears: number[];
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(private fb: FormBuilder) {
     this.creditCardForm = this.fb.group({
-      cardNumber: ['', [Validators.required, Validators.minLength(16)]],
-      cardHolder: ['', [Validators.required, Validators.minLength(3)]],
+      cardNumber: ['', [Validators.required]],
+      cardHolder: ['', [Validators.required]],
       cardExpirationYear: ['', [Validators.required]],
-      cardExpirationMonth: ['1', [Validators.required]],
+      cardExpirationMonth: ['', [Validators.required]],
       cardCCV: [
         '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(3)],
@@ -70,9 +71,11 @@ export class CreditCardComponent implements OnInit, OnDestroy {
           this.creditCardType = this.creditCards.discover;
         }
       });
+
+    this.expirationYears = this.createExpirationYears();
   }
 
-  public setCreditCardBackground() {
+  public setCreditCardBackground(): boolean {
     let creditCardNumber: any = this.creditCardForm.get('cardNumber').value;
 
     if (creditCardNumber) {
@@ -87,6 +90,58 @@ export class CreditCardComponent implements OnInit, OnDestroy {
         return true;
       }
     }
+  }
+
+  public isDisabled(previousInput, currentInput): void {
+    if (!previousInput) {
+      this.creditCardForm.controls[currentInput].disable();
+    } else {
+      this.creditCardForm.controls[currentInput].enable();
+    }
+  }
+
+  private createExpirationYears(): number[] {
+    let currentYear = new Date().getFullYear();
+    let yearsArr = [];
+    for (let i = 0; i < 10; i++) {
+      yearsArr.push(currentYear++);
+    }
+    return yearsArr;
+  }
+
+  get cardNumberNoValid(): boolean {
+    return (
+      this.creditCardForm.get('cardNumber').invalid &&
+      this.creditCardForm.get('cardNumber').touched
+    );
+  }
+
+  get cardHolderNoValid(): boolean {
+    return (
+      this.creditCardForm.get('cardHolder').invalid &&
+      this.creditCardForm.get('cardHolder').touched
+    );
+  }
+
+  get cardExpirationYearNoValid(): boolean {
+    return (
+      this.creditCardForm.get('cardExpirationYear').invalid &&
+      this.creditCardForm.get('cardExpirationYear').touched
+    );
+  }
+
+  get cardExpirationMonthNoValid(): boolean {
+    return (
+      this.creditCardForm.get('cardExpirationMonth').invalid &&
+      this.creditCardForm.get('cardExpirationMonth').touched
+    );
+  }
+
+  get cardCCVNoValid(): boolean {
+    return (
+      this.creditCardForm.get('cardCCV').invalid &&
+      this.creditCardForm.get('cardCCV').touched
+    );
   }
 
   ngOnDestroy(): void {
