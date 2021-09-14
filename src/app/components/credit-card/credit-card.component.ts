@@ -44,7 +44,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder) {
     this.creditCardForm = this.fb.group({
-      cardNumber: ['', [Validators.required]],
+      cardNumber: ['', [Validators.required, Validators.minLength(12)]],
       cardHolder: ['', [Validators.required]],
       cardExpirationYear: ['', [Validators.required]],
       cardExpirationMonth: ['', [Validators.required]],

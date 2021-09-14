@@ -30,11 +30,13 @@
       <label for="cardNumber" class="credit-card__form-label"
         >Card Number
         <input
-          type="number"
+          type="text"
           formControlName="cardNumber"
           id="cardNumber"
           class="credit-card__form-input"
-          max="16"
+          only-numbers
+          string-separated-each-four-characters
+          maxlength="19"
           autofocus
         />
       </label>
@@ -48,10 +50,14 @@
           type="text"
           formControlName="cardHolder"
           id="cardHolder"
+          only-letters
           class="credit-card__form-input"
-          max="30"
+          maxlength="30"
           [disabled]="
-            isDisabled(creditCardForm.get('cardNumber').value, 'cardHolder')
+            isDisabled(
+              creditCardForm.get('cardNumber').value.toString().length > 12,
+              'cardHolder'
+            )
           "
         />
       </label>
@@ -68,7 +74,7 @@
           class="credit-card__form-input"
           [disabled]="
             isDisabled(
-              creditCardForm.get('cardHolder').value,
+              creditCardForm.get('cardHolder').value.toString().length > 6,
               'cardExpirationYear'
             )
           "
