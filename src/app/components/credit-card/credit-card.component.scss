@@ -65,6 +65,41 @@
       top: 3rem;
       width: 100%;
     }
+
+    &-ccv-section {
+      display: flex;
+      flex-direction: row-reverse;
+      left: 0;
+      margin-top: 7rem;
+      justify-content: space-evenly;
+      position: absolute;
+      right: 0;
+    }
+
+    &-holder-band {
+      align-items: center;
+      background-color: #fff;
+      border-radius: 15px;
+      display: flex;
+      height: 50px;
+      justify-content: flex-end;
+      margin: 0;
+      padding-right: 0.5rem;
+      transform: rotateY(180deg);
+      width: 50%;
+    }
+
+    &-ccv {
+      align-items: center;
+      background-color: #fff;
+      border-radius: 15px;
+      display: flex;
+      height: 50px;
+      justify-content: center;
+      margin: 0;
+      transform: rotateY(180deg);
+      width: 20%;
+    }
   }
   &__visa {
     background: url("https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
@@ -124,8 +159,4 @@
       }
     }
   }
-}
-
-.flip-vertical-right {
-  transform: rotateY(180deg);
 }

@@ -69,6 +69,19 @@
       }"
     >
       <div class="credit-card__visual-security-band"></div>
+      <section class="credit-card__visual-ccv-section">
+        <p class="credit-card__visual-holder-band">
+          {{
+            creditCardForm.get("cardNumber").value
+              | slice
+                : creditCardForm.get("cardNumber").value.length - 4
+                : creditCardForm.get("cardNumber").value.length
+          }}
+        </p>
+        <p class="credit-card__visual-ccv">
+          {{ creditCardForm.get("cardCCV").value }}
+        </p>
+      </section>
     </div>
   </ng-template>
   <!-- CREDIT CARD -->

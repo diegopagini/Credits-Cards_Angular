@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/credit-card",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
