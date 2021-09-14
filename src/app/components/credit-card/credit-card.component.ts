@@ -38,7 +38,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     { name: 'November', value: 11 },
     { name: 'December', value: 12 },
   ];
-  public isFront: boolean = true;
+  public isTheFrontOfTheCard: boolean = true;
   public expirationYears: number[];
   private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -73,6 +73,16 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       });
 
     this.expirationYears = this.createExpirationYears();
+
+    this.creditCardForm.valueChanges
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((formValues) => {
+        if (formValues.cardCCV) {
+          this.isTheFrontOfTheCard = false;
+        } else {
+          this.isTheFrontOfTheCard = true;
+        }
+      });
   }
 
   public setCreditCardBackground(): boolean {

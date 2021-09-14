@@ -1,5 +1,7 @@
 <section class="credit-card">
+  <!-- CREDIT CARD -->
   <div
+    *ngIf="isTheFrontOfTheCard; else isTheBackOfTheCard"
     class="credit-card__visual"
     [ngClass]="{
       'credit-card__visa animated fadeIn':
@@ -20,7 +22,58 @@
     >
       <fa-icon class="animated fadeIn" [icon]="creditCardType"></fa-icon>
     </div>
+
+    <h2
+      class="credit-card__visual-number"
+      *ngIf="creditCardForm.get('cardNumber').value"
+    >
+      {{ creditCardForm.get("cardNumber").value }}
+    </h2>
+
+    <h3
+      class="credit-card__visual-holder"
+      *ngIf="creditCardForm.get('cardHolder').value"
+    >
+      {{ creditCardForm.get("cardHolder").value }}
+    </h3>
+
+    <p
+      class="credit-card__visual-year"
+      *ngIf="creditCardForm.get('cardExpirationYear').value"
+    >
+      {{ creditCardForm.get("cardExpirationYear").value }}
+    </p>
+
+    <p
+      class="credit-card__visual-month"
+      *ngIf="creditCardForm.get('cardExpirationMonth').value"
+    >
+      {{ creditCardForm.get("cardExpirationMonth").value }}
+    </p>
   </div>
+
+  <ng-template #isTheBackOfTheCard>
+    <div
+      class="credit-card__visual flip-vertical-right"
+      [ngClass]="{
+        'credit-card__visa animated fadeIn':
+          creditCardForm.get('cardNumber').value &&
+          creditCardForm.get('cardNumber').value.toString().startsWith('4'),
+        'credit-card__master animated fadeIn':
+          creditCardForm.get('cardNumber').value &&
+          creditCardForm.get('cardNumber').value.toString().startsWith('5'),
+        'credit-card__amex animated fadeIn':
+          creditCardForm.get('cardNumber').value &&
+          creditCardForm.get('cardNumber').value.toString().startsWith('3'),
+        'credit-card__discover animated fadeIn': setCreditCardBackground()
+      }"
+    >
+      <div class="credit-card__visual-security-band"></div>
+    </div>
+  </ng-template>
+  <!-- CREDIT CARD -->
+
+  <!-- FORM -->
   <form
     class="credit-card__form"
     [formGroup]="creditCardForm"
@@ -52,7 +105,7 @@
           id="cardHolder"
           only-letters
           class="credit-card__form-input"
-          maxlength="30"
+          maxlength="20"
           [disabled]="
             isDisabled(
               creditCardForm.get('cardNumber').value.toString().length > 12,
@@ -114,11 +167,12 @@
       <label for="cardCCV" class="credit-card__form-label"
         >CCV
         <input
-          type="number"
+          type="text"
+          only-numbers
           formControlName="cardCCV"
           id="cardCCV"
           class="credit-card__form-input"
-          max="3"
+          maxlength="3"
           [disabled]="
             isDisabled(
               creditCardForm.get('cardExpirationMonth').value,
@@ -130,4 +184,5 @@
       <app-form-error *ngIf="cardCCVNoValid"></app-form-error>
     </div>
   </form>
+  <!-- FORM -->
 </section>
