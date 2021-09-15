@@ -1,1 +1,16 @@
-<p>credit-card-list works!</p>
+<table *ngIf="creditCardList.length > 0" class="credit-card-list">
+  <thead class="credit-card-list__head">
+    <th class="credit-card-list__head-th">Card Number</th>
+    <th class="credit-card-list__head-th">Card Holder</th>
+    <th class="credit-card-list__head-th">Card Expiration Year</th>
+    <th class="credit-card-list__head-th">Card Expiration Month</th>
+    <th class="credit-card-list__head-th">Card CCV</th>
+  </thead>
+  <tbody class="credit-card-list__body" *ngFor="let card of creditCardList">
+    <td class="credit-card-list__body-td">{{ card.cardNumber }}</td>
+    <td class="credit-card-list__body-td">{{ card.cardHolder }}</td>
+    <td class="credit-card-list__body-td">{{ card.cardExpirationYear }}</td>
+    <td class="credit-card-list__body-td">{{ card.cardExpirationMonth }}</td>
+    <td class="credit-card-list__body-td">{{ card.cardCCV }}</td>
+  </tbody>
+</table>

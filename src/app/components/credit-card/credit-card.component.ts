@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
   faCcVisa,
@@ -9,6 +10,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { SharingService } from 'src/app/services/sharing.service';
 
 @Component({
   selector: 'app-credit-card',
@@ -42,7 +44,11 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   public expirationYears: number[];
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private sharingService: SharingService,
+    private router: Router
+  ) {
     this.creditCardForm = this.fb.group({
       cardNumber: ['', [Validators.required, Validators.minLength(12)]],
       cardHolder: ['', [Validators.required]],
@@ -117,6 +123,16 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       yearsArr.push(currentYear++);
     }
     return yearsArr;
+  }
+
+  public addCard() {
+    if (this.creditCardForm.valid) {
+      this.sharingService.addCreditCard(this.creditCardForm.value);
+      this.creditCardForm.reset();
+      this.router.navigate(['credit-card-list']);
+    } else {
+      this.creditCardForm.markAllAsTouched();
+    }
   }
 
   get cardNumberNoValid(): boolean {

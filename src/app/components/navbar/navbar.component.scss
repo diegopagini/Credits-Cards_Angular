@@ -1,0 +1,22 @@
+.nav {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .router-links {
+    display: flex;
+    list-style: none;
+
+    .link {
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+
+      &:hover {
+        color: rgba($color: #000000, $alpha: 0.5);
+      }
+    }
+  }
+}

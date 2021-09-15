@@ -158,5 +158,19 @@
         margin: 0;
       }
     }
+
+    &-submit {
+      cursor: pointer;
+      font-family: "Inconsolata", monospace;
+      font-size: 1.25rem;
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .submit-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
 }

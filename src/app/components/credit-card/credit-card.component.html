@@ -91,6 +91,7 @@
     class="credit-card__form"
     [formGroup]="creditCardForm"
     autocomplete="off"
+    (ngSubmit)="addCard()"
   >
     <div class="credit-card__form-group">
       <label for="cardNumber" class="credit-card__form-label"
@@ -103,7 +104,6 @@
           only-numbers
           string-separated-each-four-characters
           maxlength="19"
-          autofocus
         />
       </label>
       <app-form-error *ngIf="cardNumberNoValid"></app-form-error>
@@ -195,6 +195,16 @@
         />
       </label>
       <app-form-error *ngIf="cardCCVNoValid"></app-form-error>
+    </div>
+
+    <div class="credit-card__form-group submit-container">
+      <button
+        [disabled]="creditCardForm.invalid"
+        class="credit-card__form-submit"
+        type="submit"
+      >
+        Add Card
+      </button>
     </div>
   </form>
   <!-- FORM -->

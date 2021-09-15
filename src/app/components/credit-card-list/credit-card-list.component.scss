@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+
+.credit-card-list {
+  max-width: 90vw;
+
+  &__head,
+  &__body {
+    display: grid;
+    font-family: "Inconsolata", monospace;
+    grid-template-columns: repeat(5, 1fr);
+    text-transform: uppercase;
+    width: 100%;
+
+    @media screen and (max-width: 991px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-th,
+    &-td {
+      padding: 0.5rem 1rem;
+      text-align: center;
+    }
+  }
+}
