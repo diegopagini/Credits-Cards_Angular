@@ -14,4 +14,8 @@ export class SharingService {
   public getCreditCardList(): CreditCard[] {
     return this.creditCardList;
   }
+
+  public deleteCeditCard(index): void {
+    this.creditCardList.splice(index, 1);
+  }
 }

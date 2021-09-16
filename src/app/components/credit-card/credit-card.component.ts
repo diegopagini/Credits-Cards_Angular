@@ -8,6 +8,7 @@ import {
   faCcAmex,
   faCcDiscover,
 } from '@fortawesome/free-brands-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { SharingService } from 'src/app/services/sharing.service';
@@ -47,7 +48,8 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private sharingService: SharingService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.creditCardForm = this.fb.group({
       cardNumber: ['', [Validators.required, Validators.minLength(12)]],
@@ -128,6 +130,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   public addCard() {
     if (this.creditCardForm.valid) {
       this.sharingService.addCreditCard(this.creditCardForm.value);
+      this.toastr.success('The card was saved successfully!', 'Card saved!');
       this.creditCardForm.reset();
       this.router.navigate(['credit-card-list']);
     } else {

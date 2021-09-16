@@ -5,12 +5,20 @@
     <th class="credit-card-list__head-th">Card Expiration Year</th>
     <th class="credit-card-list__head-th">Card Expiration Month</th>
     <th class="credit-card-list__head-th">Card CCV</th>
+    <th class="credit-card-list__head-th">Actions</th>
   </thead>
-  <tbody class="credit-card-list__body" *ngFor="let card of creditCardList">
+  <tbody
+    class="credit-card-list__body"
+    *ngFor="let card of creditCardList; let i = index"
+  >
     <td class="credit-card-list__body-td">{{ card.cardNumber }}</td>
     <td class="credit-card-list__body-td">{{ card.cardHolder }}</td>
     <td class="credit-card-list__body-td">{{ card.cardExpirationYear }}</td>
     <td class="credit-card-list__body-td">{{ card.cardExpirationMonth }}</td>
     <td class="credit-card-list__body-td">{{ card.cardCCV }}</td>
+    <td class="credit-card-list__body-td">
+      <i class="fas fa-edit" (click)="editCard()"></i>
+      <i class="fas fa-trash-alt" (click)="deleteCard(i)"></i>
+    </td>
   </tbody>
 </table>
