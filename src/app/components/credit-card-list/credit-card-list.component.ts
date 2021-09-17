@@ -20,8 +20,8 @@ export class CreditCardListComponent implements OnInit {
     this.creditCardList = this.sharingService.getCreditCardList();
   }
 
-  public editCard() {
-    console.log('edit');
+  public editCard(index) {
+    this.sharingService.editCreditCard(index);
   }
 
   public deleteCard(index) {

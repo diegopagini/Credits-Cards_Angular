@@ -11,6 +11,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { CreditCard } from 'src/app/models/credit-card.interface';
 import { SharingService } from 'src/app/services/sharing.service';
 
 @Component({
@@ -43,6 +44,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   ];
   public isTheFrontOfTheCard: boolean = true;
   public expirationYears: number[];
+  public updateCard: CreditCard;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -81,6 +83,12 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       });
 
     this.expirationYears = this.createExpirationYears();
+
+    this.updateCard = this.sharingService.updateCard;
+    if (this.updateCard) {
+      this.creditCardForm.patchValue(this.updateCard);
+      this.sharingService.updateCard = null;
+    }
 
     this.creditCardForm.valueChanges
       .pipe(takeUntil(this.unsubscribe$))
